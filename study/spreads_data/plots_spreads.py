@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data1 = pd.read_csv('C:\\Users\\nshir\\code\\study\\spreads_data\\1 кремлёвское.1.txt')
+data2 = pd.read_csv('C:\\Users\\nshir\\code\\study\\spreads_data\\2 деревенские мотивы.0.txt')
+data3 = pd.read_csv('C:\\Users\\nshir\\code\\study\\spreads_data\\4_маргарин.1.txt')
+
+fig0 = plt.figure(dpi=180)
+plt.plot(data1['wavelength'], data1['value'], 'darkblue', linewidth=0.8, label='Спред 1')
+plt.plot(data2['wavelength'], data2['value'],'magenta',linewidth=0.8, label='Спред 2')
+plt.plot(data3['wavelength'], data3['value'], 'lime', linewidth=0.8, label='Маргарин')
+plt.xlim((data1['wavelength'].max(),data1['wavelength'].min()))
+plt.xlabel(r'Волновое число $см^{-1}$')
+plt.ylabel('НПВО о.е.')
+plt.title('ИК спектры образцов спреда/маргарина')
+plt.legend(loc='upper right')
+plt.grid()
+plt.show()
+
+fig1 = plt.figure(dpi=200)
+plt.plot(data1.loc[data1[data1['wavelength'] < 1500].index, 'wavelength'], data1.loc[data1[data1['wavelength'] < 1500].index ,'value'], 'darkblue', linewidth=0.8, label='Спред 1')
+plt.plot(data2.loc[data2[data2['wavelength'] < 1500].index,'wavelength'], data2.loc[data2[data2['wavelength'] < 1500].index, 'value'], 'magenta', linewidth=0.8, label='Спред 2')
+plt.plot(data3.loc[data3[data3['wavelength'] < 1500].index,'wavelength'], data3.loc[data3[data3['wavelength'] < 1500].index, 'value'], 'lime', linewidth=0.8, label='Маргарин')
+plt.title('ИК спектры образцов спреда/маргарина')
+plt.xlim((data1.loc[data1[data1['wavelength'] < 1500].index, 'wavelength'].max(),data1.loc[data1[data1['wavelength'] < 1500].index, 'wavelength'].min()))
+plt.xlabel(r'Волновое число $см^{-1}$')
+plt.ylabel('НПВО о.е.')
+plt.legend(loc='upper right')
+plt.grid()
+plt.show()
